@@ -30,6 +30,15 @@ export const metadata: Metadata = {
   authors: [{ name: "Ahmed Malik", url: "https://linkedin.com/in/ahhmedmalik" }],
   creator: "Wyibe",
   metadataBase: new URL("https://wyibe.com"),
+  icons: {
+    icon: [
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon-32.png",
+  },
   openGraph: {
     title: "Wyibe — Full-Stack Engineering & Agentic AI for B2B",
     description:
