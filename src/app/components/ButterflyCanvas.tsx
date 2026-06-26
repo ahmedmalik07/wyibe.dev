@@ -121,16 +121,8 @@ export default function ButterflyCanvas() {
         dpr={[1, 1.5]}
         gl={{ antialias: true, alpha: true }}
         style={{ width: '100%', height: '100%' }}
-        // Disable ALL R3F event handling — this is the key fix
-        events={() => ({
-          enabled: false,
-          priority: 0,
-          compute: () => {},
-          connected: false,
-          handlers: {},
-          connect: () => {},
-          disconnect: () => {},
-        })}
+        // Disable ALL R3F event handling — pass undefined to skip event manager entirely
+        events={undefined}
       >
         <Scene />
       </Canvas>
