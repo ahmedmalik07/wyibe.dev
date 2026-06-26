@@ -55,7 +55,7 @@ function Butterfly({ mousePosition }: { mousePosition: { x: number; y: number } 
   })
 
   return (
-    <group ref={groupRef} scale={1.5}>
+    <group ref={groupRef} scale={0.7}>
       <primitive object={scene} />
     </group>
   )
