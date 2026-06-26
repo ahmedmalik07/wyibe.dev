@@ -1,17 +1,18 @@
 'use client'
 
 import React, { Suspense, useRef, useEffect, useState } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF, useAnimations, Environment } from '@react-three/drei'
 import * as THREE from 'three'
 
-function Butterfly({ mousePosition }: { mousePosition: { x: number; y: number } }) {
+// Size of the canvas box in px — small enough to never cover buttons
+const SIZE = 140
+
+function Butterfly() {
   const groupRef = useRef<THREE.Group>(null)
   const { scene, animations } = useGLTF('/fantasy_butterfly_animation.glb')
   const { actions } = useAnimations(animations, groupRef)
-  const targetPosition = useRef(new THREE.Vector3(0, 0, 0))
-  const velocity = useRef({ x: 0, y: 0 })
-  const { viewport } = useThree()
+  const floatRef = useRef(0)
 
   useEffect(() => {
     if (actions && Object.keys(actions).length > 0) {
@@ -26,32 +27,10 @@ function Butterfly({ mousePosition }: { mousePosition: { x: number; y: number } 
 
   useFrame((state) => {
     if (!groupRef.current) return
-
-    const x = (mousePosition.x / window.innerWidth) * 2 - 1
-    const y = -((mousePosition.y / window.innerHeight) * 2 - 1)
-
-    targetPosition.current.set(
-      x * viewport.width * 0.5,
-      y * viewport.height * 0.5,
-      0
-    )
-
-    const prevX = groupRef.current.position.x
-    const prevY = groupRef.current.position.y
-
-    groupRef.current.position.lerp(targetPosition.current, 0.08)
-
-    velocity.current.x = groupRef.current.position.x - prevX
-    velocity.current.y = groupRef.current.position.y - prevY
-
-    const tiltZ = THREE.MathUtils.clamp(-velocity.current.x * 15, -0.6, 0.6)
-    const tiltX = THREE.MathUtils.clamp(velocity.current.y * 10, -0.4, 0.4)
-
-    groupRef.current.rotation.z = THREE.MathUtils.lerp(groupRef.current.rotation.z, tiltZ, 0.1)
-    groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, tiltX, 0.1)
-
-    // Subtle floating
-    groupRef.current.position.y += Math.sin(state.clock.elapsedTime * 2.5) * 0.003
+    floatRef.current = Math.sin(state.clock.elapsedTime * 2.5) * 0.04
+    groupRef.current.position.y = floatRef.current
+    // gentle idle sway
+    groupRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 1.2) * 0.08
   })
 
   return (
@@ -61,7 +40,7 @@ function Butterfly({ mousePosition }: { mousePosition: { x: number; y: number } 
   )
 }
 
-function Scene({ mousePosition }: { mousePosition: { x: number; y: number } }) {
+function Scene() {
   return (
     <>
       <ambientLight intensity={0.8} />
@@ -69,17 +48,16 @@ function Scene({ mousePosition }: { mousePosition: { x: number; y: number } }) {
       <directionalLight position={[-5, 3, -5]} intensity={0.6} color="#fbbf24" />
       <pointLight position={[0, 0, 5]} intensity={1} color="#a855f7" />
       <Suspense fallback={null}>
-        <ErrorBoundary>
-          <Butterfly mousePosition={mousePosition} />
+        <InnerErrorBoundary>
+          <Butterfly />
           <Environment preset="night" />
-        </ErrorBoundary>
+        </InnerErrorBoundary>
       </Suspense>
     </>
   )
 }
 
-// Inner error boundary for the 3D model specifically
-class ErrorBoundary extends React.Component<
+class InnerErrorBoundary extends React.Component<
   { children: React.ReactNode },
   { hasError: boolean }
 > {
@@ -92,48 +70,69 @@ class ErrorBoundary extends React.Component<
 }
 
 export default function ButterflyCanvas() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isTouch, setIsTouch] = useState(false)
+  // Raw mouse pos (unsmoothed) — we smooth via CSS translate
+  const [pos, setPos] = useState({ x: -999, y: -999 })
+  const [isTouch, setIsTouch] = useState(true)
   const [pastHero, setPastHero] = useState(false)
 
   useEffect(() => {
-    // Don't render on touch/mobile devices — no cursor to follow
     setIsTouch(window.matchMedia('(hover: none)').matches)
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
+    const onMove = (e: MouseEvent) => setPos({ x: e.clientX, y: e.clientY })
+
+    const onScroll = () => {
+      setPastHero(window.scrollY > window.innerHeight * 0.8)
     }
 
-    // Show butterfly only after scrolling past the hero section
-    const handleScroll = () => {
-      const heroHeight = window.innerHeight
-      setPastHero(window.scrollY > heroHeight * 0.8)
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('scroll', onScroll)
     }
   }, [])
 
   if (isTouch || !pastHero) return null
 
+  // Centre the small canvas on the cursor
+  const left = pos.x - SIZE / 2
+  const top = pos.y - SIZE / 2
+
   return (
     <div
-      className="fixed inset-0"
-      style={{ zIndex: 50, pointerEvents: 'none' }}
       aria-hidden="true"
+      style={{
+        position: 'fixed',
+        left,
+        top,
+        width: SIZE,
+        height: SIZE,
+        // No pointer-events at all — the div is tiny and sits ON the cursor,
+        // but we disable it so clicks pass straight through
+        pointerEvents: 'none',
+        zIndex: 9999,
+        // Smooth the position with a CSS transition so it glides
+        transition: 'left 0.08s linear, top 0.08s linear',
+        willChange: 'left, top',
+      }}
     >
       <Canvas
-        camera={{ position: [0, 0, 8], fov: 45 }}
+        camera={{ position: [0, 0, 4], fov: 40 }}
         dpr={[1, 1.5]}
-        gl={{ antialias: false, alpha: true }}
-        style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
-        events={{ enabled: false }}
+        gl={{ antialias: true, alpha: true }}
+        style={{ width: '100%', height: '100%' }}
+        // Disable ALL R3F event handling — this is the key fix
+        events={() => ({
+          enabled: false,
+          priority: 0,
+          compute: () => {},
+          connected: false,
+          handlers: {},
+          connect: () => {},
+          disconnect: () => {},
+        })}
       >
-        <Scene mousePosition={mousePosition} />
+        <Scene />
       </Canvas>
     </div>
   )
