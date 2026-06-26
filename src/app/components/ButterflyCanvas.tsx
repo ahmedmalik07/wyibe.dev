@@ -69,11 +69,26 @@ function Scene({ mousePosition }: { mousePosition: { x: number; y: number } }) {
       <directionalLight position={[-5, 3, -5]} intensity={0.6} color="#fbbf24" />
       <pointLight position={[0, 0, 5]} intensity={1} color="#a855f7" />
       <Suspense fallback={null}>
-        <Butterfly mousePosition={mousePosition} />
-        <Environment preset="night" />
+        <ErrorBoundary>
+          <Butterfly mousePosition={mousePosition} />
+          <Environment preset="night" />
+        </ErrorBoundary>
       </Suspense>
     </>
   )
+}
+
+// Inner error boundary for the 3D model specifically
+class ErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props)
+    this.state = { hasError: false }
+  }
+  static getDerivedStateFromError() { return { hasError: true } }
+  render() { return this.state.hasError ? null : this.props.children }
 }
 
 export default function ButterflyCanvas() {
