@@ -107,15 +107,16 @@ export default function ButterflyCanvas() {
 
   return (
     <div
-      className="fixed inset-0 pointer-events-none"
-      style={{ zIndex: 50 }}
+      className="fixed inset-0"
+      style={{ zIndex: 50, pointerEvents: 'none' }}
       aria-hidden="true"
     >
       <Canvas
         camera={{ position: [0, 0, 8], fov: 45 }}
         dpr={[1, 1.5]}
         gl={{ antialias: false, alpha: true }}
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
+        events={{ enabled: false }}
       >
         <Scene mousePosition={mousePosition} />
       </Canvas>
