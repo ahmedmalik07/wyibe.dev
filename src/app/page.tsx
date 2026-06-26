@@ -12,6 +12,7 @@ import FAQSection from "./sections/FAQSection";
 import CTASection from "./sections/CTASection";
 import BackToTop from "./sections/BackToTop";
 import Footer from "./sections/Footer";
+import ButterflyOverlay from "./components/ButterflyOverlay";
 
 export default function Home() {
   return (
@@ -19,6 +20,8 @@ export default function Home() {
       <Navbar />
       <main className="flex flex-1 flex-col">
         <HeroSection />
+        {/* Butterfly follows cursor across all sections below the hero */}
+        <ButterflyOverlay />
         <StatsSection />
         <ServicesSection />
         <IndustriesSection />

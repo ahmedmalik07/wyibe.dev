@@ -81,7 +81,7 @@ export default function CTASection() {
                   className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-4 transition-all hover:border-purple-500/30 hover:bg-white/[0.08]"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10">
-                    <item.icon />
+                    <item.icon className="h-5 w-5 text-purple-400" />
                   </div>
                   <div>
                     <div className="text-xs text-gray-500">{item.label}</div>
