@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Ahmed Malik", url: "https://linkedin.com/in/ahhmedmalik" }],
   creator: "Wyibe",
-  metadataBase: new URL("https://wyibe.com"),
+  metadataBase: new URL("https://wyibe.dev"),
   icons: {
     icon: [
       { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: "Wyibe — Full-Stack Engineering & Agentic AI for B2B",
     description:
       "Production-grade web platforms and autonomous AI systems for businesses across the US, UK, Canada, and beyond.",
-    url: "https://wyibe.com",
+    url: "https://wyibe.dev",
     siteName: "Wyibe",
     locale: "en_US",
     type: "website",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://wyibe.com",
+    canonical: "https://wyibe.dev",
   },
 };
 
