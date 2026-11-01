@@ -6,12 +6,11 @@ import Image from "next/image";
 const footerLinks = {
   company: [
     { label: "Services", href: "#services" },
-    { label: "Industries", href: "#industries" },
-    { label: "Process", href: "#process" },
     { label: "Work", href: "#portfolio" },
+    { label: "Process", href: "#process" },
+    { label: "About", href: "#about" },
   ],
   resources: [
-    { label: "Testimonials", href: "#testimonials" },
     { label: "FAQ", href: "#faq" },
     { label: "Approach", href: "#approach" },
     { label: "Contact", href: "#contact" },
@@ -43,11 +42,11 @@ export default function Footer() {
               <span className="text-lg font-bold tracking-tight text-white">Wyibe</span>
             </div>
             <p className="text-sm text-gray-400 max-w-sm mb-6 leading-relaxed">
-              Full-stack engineering and Agentic AI systems for B2B leaders across the US, UK, Canada, and beyond. No fluff. Pure engineering.
+              Full-stack engineering and Agentic AI systems for businesses that want software doing real work. Built in Islamabad, shipped worldwide.
             </p>
             <div className="flex items-center gap-2 text-xs text-gray-500">
               <MapPin className="h-3 w-3" />
-              Serving clients in the United States, United Kingdom, Canada & more
+              Islamabad, Pakistan · Working with teams worldwide
             </div>
           </div>
 

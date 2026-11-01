@@ -2,12 +2,10 @@ import Navbar from "./sections/Navbar";
 import HeroSection from "./sections/HeroSection";
 import StatsSection from "./sections/StatsSection";
 import ServicesSection from "./sections/ServicesSection";
-import IndustriesSection from "./sections/IndustriesSection";
 import ProcessSection from "./sections/ProcessSection";
 import PortfolioSection from "./sections/PortfolioSection";
 import TechnicalApproachSection from "./sections/TechnicalApproachSection";
-import TestimonialsSection from "./sections/TestimonialsSection";
-import GlobalPresenceSection from "./sections/GlobalPresenceSection";
+import FounderSection from "./sections/FounderSection";
 import FAQSection from "./sections/FAQSection";
 import CTASection from "./sections/CTASection";
 import BackToTop from "./sections/BackToTop";
@@ -20,16 +18,14 @@ export default function Home() {
       <Navbar />
       <main className="flex flex-1 flex-col">
         <HeroSection />
-        {/* Butterfly follows cursor across all sections below the hero */}
+        {/* Butterfly follows cursor across all sections below the hero (desktop only) */}
         <ButterflyOverlay />
         <StatsSection />
         <ServicesSection />
-        <IndustriesSection />
-        <ProcessSection />
         <PortfolioSection />
+        <ProcessSection />
         <TechnicalApproachSection />
-        <TestimonialsSection />
-        <GlobalPresenceSection />
+        <FounderSection />
         <FAQSection />
         <CTASection />
       </main>

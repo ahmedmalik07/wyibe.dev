@@ -7,7 +7,7 @@ import { Search, PenTool, Code, Rocket, ChevronRight } from "lucide-react";
 const steps = [
   { number: "01", icon: Search, title: "Discovery", description: "We audit your current stack, interview stakeholders, and map the real bottlenecks. No assumptions. Only evidence.", color: "from-purple-600 to-violet-600", bg: "bg-purple-500/20", border: "border-purple-500/30", text: "text-purple-300" },
   { number: "02", icon: PenTool, title: "Architecture", description: "We design the system blueprint: tech stack, data models, API contracts, and AI integration points.", color: "from-blue-600 to-cyan-600", bg: "bg-blue-500/20", border: "border-blue-500/30", text: "text-blue-300" },
-  { number: "03", icon: Code, title: "Development", description: "Weekly sprints with visible deliverables. Clean, documented code with full test coverage from week one.", color: "from-emerald-600 to-teal-600", bg: "bg-emerald-500/20", border: "border-emerald-500/30", text: "text-emerald-300" },
+  { number: "03", icon: Code, title: "Development", description: "Weekly sprints with a live preview link. Clean, documented code with tests on the parts that matter.", color: "from-emerald-600 to-teal-600", bg: "bg-emerald-500/20", border: "border-emerald-500/30", text: "text-emerald-300" },
   { number: "04", icon: Rocket, title: "Deployment", description: "CI/CD pipelines, monitoring, and rollback strategies. We handle infrastructure so you focus on growth.", color: "from-amber-600 to-orange-600", bg: "bg-amber-500/20", border: "border-amber-500/30", text: "text-amber-300" },
 ];
 
@@ -39,10 +39,10 @@ export default function ProcessSection() {
             How We Work
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-            The <span className="gradient-text">Anti-BS</span> Process
+            How a Project <span className="gradient-text">Runs</span>
           </h2>
           <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
-            No 50-page proposals. No scope creep. Just a clean process that ships results.
+            Four steps, weekly check-ins, and you can see the work at every stage.
           </p>
         </div>
 

@@ -4,13 +4,13 @@ import { useState, useEffect, useRef } from "react";
 import { ChevronDown, HelpCircle } from "lucide-react";
 
 const faqs = [
-  { question: "What industries do you specialize in?", answer: "We primarily serve B2B companies in fintech, healthcare, SaaS, logistics, e-commerce, insurance, and cybersecurity across the US, UK, and Canada. Our team has deep domain expertise in regulated industries requiring HIPAA, SOC 2, and GDPR compliance." },
-  { question: "How long does a typical project take?", answer: "MVP engagements typically run 6–10 weeks. Full platform builds range from 3–6 months depending on scope complexity. We ship to staging weekly so you see progress from day one, not at a final reveal." },
-  { question: "Do you work with existing teams or replace them?", answer: "We integrate with your existing engineering team. Our code is clean, documented, and handed over with knowledge-transfer sessions. We act as a force multiplier, not a replacement." },
-  { question: "What tech stacks do you work with?", answer: "Modern, proven stacks: Next.js, React, Node.js, Python, TypeScript, PostgreSQL, AWS/GCP/Azure, Kubernetes, Terraform, and AI frameworks like LangChain and OpenAI. We pick the right tool for your scale and team." },
-  { question: "How do you handle AI / LLM integrations?", answer: "We architect AI-native systems from day one — not as bolt-ons. This includes reasoning chains, RAG pipelines, vector databases, multi-agent workflows, and robust evaluation frameworks to ensure reliability at scale." },
-  { question: "What does ongoing support look like?", answer: "Post-launch, we offer retainer plans covering monitoring, incident response, feature iteration, and performance optimization. Most clients stay with us for years because we treat their product like our own." },
-  { question: "How do we get started?", answer: "Book a free 30-minute strategy call using the button below. We'll audit your current setup, identify quick wins, and outline a roadmap — no commitment required." },
+  { question: "What industries do you specialize in?", answer: "We build for small and growing businesses: restaurants and retail, home services, SaaS startups and local brands. If your team does repetitive work by hand or your website is holding you back, we are a good fit." },
+  { question: "How long does a typical project take?", answer: "A website usually takes 1 to 3 weeks. An MVP or an AI agent usually takes 4 to 8 weeks, depending on scope. You get a live preview link from the first week, so you see progress as it happens." },
+  { question: "Do you work with existing teams or replace them?", answer: "Either works. We can build the whole thing, or plug into your team. The code lives in your GitHub, is documented, and you own all of it." },
+  { question: "What tech stacks do you work with?", answer: "Mostly Next.js, React, TypeScript, Node.js, Python and PostgreSQL, deployed on Vercel or similar. For AI we use OpenAI, Claude, Gemini and LangChain, plus Vapi and Twilio for voice. We pick what fits your size and budget." },
+  { question: "How do you handle AI / LLM integrations?", answer: "We start with one job the AI should do well, test it on your real data, and only then automate it. That covers RAG over your documents, agents that act in your tools, and voice agents, with logs so you can see every decision." },
+  { question: "What does ongoing support look like?", answer: "After launch we offer a monthly plan for fixes, small features and monitoring. If you would rather take it in-house, we hand everything over." },
+  { question: "How do we get started?", answer: "Book a free 30-minute strategy call using the button below. We'll audit your current setup, identify quick wins, and outline a roadmap. No commitment required." },
 ];
 
 export default function FAQSection() {
@@ -58,7 +58,7 @@ export default function FAQSection() {
             Questions? <span className="gradient-text">Answered.</span>
           </h2>
           <p className="mt-4 text-gray-400 max-w-xl mx-auto">
-            Everything you need to know before we build something extraordinary together.
+            Straight answers before you book a call.
           </p>
         </div>
 

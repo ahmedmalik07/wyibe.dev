@@ -39,12 +39,12 @@ export default function CTASection() {
               Start Your Project
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">
-              Ready to Build Something
+              Have a project in mind?
               <br />
-              <span className="gradient-text">Extraordinary?</span>
+              <span className="gradient-text">Let&apos;s talk it through.</span>
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto mb-10">
-              Book a free 30-minute strategy call. We&apos;ll audit your current setup and outline a roadmap — no commitment required.
+              Book a free 30-minute call. We will look at your current setup and suggest a plan. No commitment required.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
@@ -93,7 +93,7 @@ export default function CTASection() {
 
             <div className="mt-8 flex items-center justify-center gap-2 text-xs text-gray-500">
               <MapPin className="h-3 w-3" />
-              Serving clients across the United States, United Kingdom, and Canada
+              Based in Islamabad (GMT+5) · Calls in US and UK hours
             </div>
           </div>
         </div>

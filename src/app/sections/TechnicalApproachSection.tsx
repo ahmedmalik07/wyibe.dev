@@ -6,7 +6,7 @@ import { Terminal, GitBranch, Layers, MessageSquare, Gauge } from "lucide-react"
 
 const principles = [
   { icon: GitBranch, title: "Clean, Owned Code", description: "No black-box builders. Every line is written, documented, and transferred to your team.", color: "from-purple-600 to-violet-600", bg: "bg-purple-500/20", border: "border-purple-500/30" },
-  { icon: MessageSquare, title: "Transparent Communication", description: "Daily async updates, shared Slack channels, and direct access to your engineer.", color: "from-blue-600 to-cyan-600", bg: "bg-blue-500/20", border: "border-blue-500/30" },
+  { icon: MessageSquare, title: "Transparent Communication", description: "Regular updates on WhatsApp, Slack or email, and direct access to the engineer.", color: "from-blue-600 to-cyan-600", bg: "bg-blue-500/20", border: "border-blue-500/30" },
   { icon: Gauge, title: "Rapid Deployment", description: "MVPs in weeks, not quarters. We ship to production early and iterate fast.", color: "from-emerald-600 to-teal-600", bg: "bg-emerald-500/20", border: "border-emerald-500/30" },
   { icon: Layers, title: "AI-Native Architecture", description: "Systems designed with LLM integration from day one, not bolted on after.", color: "from-amber-600 to-orange-600", bg: "bg-amber-500/20", border: "border-amber-500/30" },
 ];
@@ -39,10 +39,10 @@ export default function TechnicalApproachSection() {
               Our Approach
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6">
-              The <span className="gradient-text">Anti-BS</span> Guarantee
+              What You Can <span className="gradient-text">Count On</span>
             </h2>
             <p className="text-gray-400 leading-relaxed mb-8 max-w-lg">
-              We don&apos;t do decks. We don&apos;t do scope creep. We write code, deploy it, and optimize until it hits the KPI.
+              You own the code, you see progress every week, and you always know who is building your product.
             </p>
 
             <div className="rounded-2xl border border-white/10 overflow-hidden shadow-2xl relative" style={{ background: "linear-gradient(145deg, #111 0%, #0a0a0a 100%)" }}>

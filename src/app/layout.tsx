@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Wyibe — Full-Stack Engineering & Agentic AI for B2B",
+  title: "Wyibe | Full-Stack Engineering & Agentic AI for Business",
   description:
-    "Wyibe builds production-grade web platforms and autonomous AI systems for businesses across the US, UK, Canada, and beyond. Strategy, engineering, and deployment — end to end.",
+    "Wyibe builds production-grade web platforms and autonomous AI systems for businesses across the US, UK, Canada, and beyond. From strategy to deployment, end to end.",
   keywords: [
     "software development agency",
     "full-stack engineering",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon-32.png",
   },
   openGraph: {
-    title: "Wyibe — Full-Stack Engineering & Agentic AI for B2B",
+    title: "Wyibe | Full-Stack Engineering & Agentic AI for Business",
     description:
       "Production-grade web platforms and autonomous AI systems for businesses across the US, UK, Canada, and beyond.",
     url: "/",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wyibe — Full-Stack Engineering & Agentic AI for B2B",
+    title: "Wyibe | Full-Stack Engineering & Agentic AI for Business",
     description:
       "Production-grade web platforms and autonomous AI systems for businesses across the US, UK, Canada, and beyond.",
   },

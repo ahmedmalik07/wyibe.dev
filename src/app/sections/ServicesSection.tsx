@@ -2,17 +2,15 @@
 
 import { tintBg } from "../lib/tint";
 import { useEffect, useRef, useState } from "react";
-import { Code2, Bot, BarChart3, Cloud, ShieldCheck, Cpu, Smartphone, Database } from "lucide-react";
+import { Code2, Bot, PhoneCall, Smartphone, Cpu, Workflow } from "lucide-react";
 
 const services = [
-  { icon: Code2, title: "Full-Stack Web Engineering", description: "Scalable web apps with Next.js, Node.js, cloud-native infrastructure, and CI/CD pipelines.", tags: ["Next.js", "TypeScript", "AWS", "PostgreSQL"], gradient: "from-violet-600 to-purple-600", bg: "bg-purple-500/20", border: "border-purple-500/30", span: "md:col-span-2" },
-  { icon: Bot, title: "Agentic AI Systems", description: "Autonomous digital employees and multi-agent workflows powered by LLMs that drive real ROI.", tags: ["LangChain", "OpenAI", "Python", "Vector DBs"], gradient: "from-blue-600 to-cyan-600", bg: "bg-blue-500/20", border: "border-blue-500/30", span: "md:col-span-1" },
-  { icon: BarChart3, title: "Operations Intelligence", description: "Data pipelines, internal dashboards, and AI-enhanced process automation.", tags: ["ETL", "LLM Orchestration", "Analytics"], gradient: "from-emerald-600 to-teal-600", bg: "bg-emerald-500/20", border: "border-emerald-500/30", span: "md:col-span-1" },
-  { icon: Cloud, title: "Cloud Architecture", description: "AWS, GCP, Azure infrastructure design with 99.99% uptime SLA.", tags: ["AWS", "Kubernetes", "Terraform"], gradient: "from-amber-600 to-orange-600", bg: "bg-amber-500/20", border: "border-amber-500/30", span: "md:col-span-1" },
-  { icon: ShieldCheck, title: "Security & Compliance", description: "SOC 2, GDPR, HIPAA-aligned security architecture and pen testing.", tags: ["SOC 2", "GDPR", "HIPAA"], gradient: "from-rose-600 to-pink-600", bg: "bg-rose-500/20", border: "border-rose-500/30", span: "md:col-span-1" },
-  { icon: Cpu, title: "AI Strategy Consulting", description: "Feasibility studies, ROI modeling, and implementation roadmaps.", tags: ["ROI Analysis", "Roadmapping"], gradient: "from-indigo-600 to-violet-600", bg: "bg-indigo-500/20", border: "border-indigo-500/30", span: "md:col-span-1" },
-  { icon: Smartphone, title: "Mobile & Cross-Platform", description: "React Native and Flutter apps that feel native on iOS and Android.", tags: ["React Native", "Flutter", "iOS", "Android"], gradient: "from-sky-600 to-blue-600", bg: "bg-sky-500/20", border: "border-sky-500/30", span: "md:col-span-1" },
-  { icon: Database, title: "Data Engineering", description: "Real-time streaming, data lakes, and warehouse architectures.", tags: ["Spark", "Kafka", "Snowflake"], gradient: "from-fuchsia-600 to-pink-600", bg: "bg-fuchsia-500/20", border: "border-fuchsia-500/30", span: "md:col-span-2" },
+  { icon: Code2, title: "Full-Stack Web Engineering", description: "Web apps, SaaS products and dashboards built on Next.js and Node.js, deployed with CI/CD so every change ships safely.", tags: ["Next.js", "TypeScript", "PostgreSQL", "Vercel"], gradient: "from-violet-600 to-purple-600", bg: "bg-purple-500/20", border: "border-purple-500/30", span: "md:col-span-2" },
+  { icon: Bot, title: "Agentic AI Systems", description: "AI agents that research, decide and act inside your tools, with guardrails and logs so you can trust what they do.", tags: ["LangChain", "OpenAI", "Claude", "Python"], gradient: "from-blue-600 to-cyan-600", bg: "bg-blue-500/20", border: "border-blue-500/30", span: "md:col-span-1" },
+  { icon: PhoneCall, title: "Voice AI Agents", description: "Phone agents that answer calls, qualify leads and book appointments around the clock.", tags: ["Vapi", "Twilio", "FastAPI"], gradient: "from-emerald-600 to-teal-600", bg: "bg-emerald-500/20", border: "border-emerald-500/30", span: "md:col-span-1" },
+  { icon: Workflow, title: "Workflow Automation", description: "Connect the apps you already use and remove the copy-paste work between them.", tags: ["n8n", "APIs", "Webhooks"], gradient: "from-amber-600 to-orange-600", bg: "bg-amber-500/20", border: "border-amber-500/30", span: "md:col-span-1" },
+  { icon: Smartphone, title: "Mobile Apps", description: "Android and cross-platform apps that feel native and ship to the stores.", tags: ["Kotlin", "React Native", "Android"], gradient: "from-sky-600 to-blue-600", bg: "bg-sky-500/20", border: "border-sky-500/30", span: "md:col-span-1" },
+  { icon: Cpu, title: "AI Adoption Strategy", description: "Figure out where AI pays off in your company, which tools to use, and how to keep company data safe, including self-hosted models.", tags: ["Roadmaps", "Self-hosted LLMs", "Data policy"], gradient: "from-indigo-600 to-violet-600", bg: "bg-indigo-500/20", border: "border-indigo-500/30", span: "md:col-span-3" },
 ];
 
 export default function ServicesSection() {
@@ -44,7 +42,7 @@ export default function ServicesSection() {
             Services That <span className="gradient-text">Scale</span>
           </h2>
           <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
-            Eight disciplines. One mission: ship production-grade systems that move the needle.
+            What we build, end to end: from the first call to a system running in production.
           </p>
         </div>
 

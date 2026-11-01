@@ -338,7 +338,7 @@ const HeroSection = () => {
         >
           <Globe className="w-4 h-4 text-purple-400 animate-pulse" />
           <span className="text-xs sm:text-sm text-gray-300">
-            Trusted by US, UK & Canadian Businesses
+            Incubated at NTS H8 · 4× National Hackathon Winner
           </span>
         </div>
 
@@ -381,9 +381,9 @@ const HeroSection = () => {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
         >
-          Wyibe partners with B2B leaders across the US, UK, and Canada to build
-          scalable web platforms and deploy autonomous Agentic AI systems. No
-          fluff. Pure engineering.
+          Wyibe builds web platforms and autonomous AI agents for businesses in the
+          US, UK, Canada and beyond. You work directly with the engineer who writes
+          the code.
         </p>
 
         {/* CTAs */}
@@ -420,7 +420,7 @@ const HeroSection = () => {
           {[
             { icon: Zap, label: "Full-Stack Engineering" },
             { icon: Shield, label: "Agentic AI Systems" },
-            { icon: Globe, label: "US · UK · Canada" },
+            { icon: Globe, label: "Remote, worldwide" },
           ].map(({ icon: Icon, label }) => (
             <div key={label} className="flex items-center gap-2 text-gray-500">
               <Icon className="w-4 h-4 text-purple-400" />

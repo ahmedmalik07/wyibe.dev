@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 // Social preview card shown when wyibe.com is shared on LinkedIn, WhatsApp, X, Slack.
-export const alt = "Wyibe: Full-Stack Engineering & Agentic AI for B2B";
+export const alt = "Wyibe | Full-Stack Engineering & Agentic AI for Business";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

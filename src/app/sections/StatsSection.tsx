@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Briefcase, Globe, Award, Zap, Clock, Users } from "lucide-react";
+import { Trophy, Rocket, Award, Building2, GraduationCap, Medal } from "lucide-react";
 
+// Real, checkable credentials only. No invented client numbers.
 const stats = [
-  { icon: Briefcase, value: "120+", label: "Projects Delivered", sub: "Across 8 industries", accent: "bg-purple-500" },
-  { icon: Globe, value: "15+", label: "Countries Served", sub: "US · UK · Canada · Global", accent: "bg-blue-500" },
-  { icon: Award, value: "99.9%", label: "Uptime Delivered", sub: "Enterprise-grade SLA", accent: "bg-emerald-500" },
-  { icon: Zap, value: "$25M+", label: "Revenue Enabled", sub: "For our clients", accent: "bg-amber-500" },
-  { icon: Clock, value: "< 2hr", label: "Avg. Response", sub: "During business hours", accent: "bg-rose-500" },
-  { icon: Users, value: "95%", label: "Client Retention", sub: "Long-term partnerships", accent: "bg-cyan-500" },
+  { icon: Trophy, value: "4×", label: "National Hackathon Winner", sub: "Incl. Google × Systems Ltd Agentic AI and NACTA 2026 AI hackathons", accent: "bg-amber-500" },
+  { icon: Medal, value: "Top 5", label: "Build with Fastn Hackathon", sub: "Selected for the judges' live demo round, 2026", accent: "bg-purple-500" },
+  { icon: Award, value: "Winner", label: "Hult Prize, Air University", sub: "Campus round, with the Wyibe concept", accent: "bg-rose-500" },
+  { icon: Rocket, value: "NTS H8", label: "Incubated in Islamabad", sub: "Wyibe is part of the NTS H8 incubator", accent: "bg-blue-500" },
+  { icon: GraduationCap, value: "Samsung", label: "AI Training Bootcamp", sub: "Selected participant", accent: "bg-cyan-500" },
+  { icon: Building2, value: "SECP", label: "Registered Company", sub: "WYIBE.DEV (SMC-Private) Limited, 2026", accent: "bg-emerald-500" },
 ];
 
 export default function StatsSection() {
@@ -34,7 +35,15 @@ export default function StatsSection() {
       </div>
 
       <div className="mx-auto max-w-6xl relative">
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="mb-12 text-center">
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-amber-500/20 text-amber-300 border border-amber-500/30 mb-4">
+            Track Record
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            Small team, <span className="gradient-text">proven builders</span>
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {stats.map((stat, i) => {
             const Icon = stat.icon;
             return (
@@ -51,7 +60,7 @@ export default function StatsSection() {
                 <div className={`mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl ${stat.accent} shadow-lg group-hover:scale-110 transition-transform`}>
                   <Icon className="h-6 w-6 text-white" />
                 </div>
-                <div className="text-3xl sm:text-4xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-white mb-1">{stat.value}</div>
                 <div className="text-sm font-medium text-gray-300 mb-1">{stat.label}</div>
                 <div className="text-xs text-gray-500">{stat.sub}</div>
               </div>
