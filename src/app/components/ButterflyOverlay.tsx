@@ -6,20 +6,25 @@ import React, { useSyncExternalStore } from 'react'
 const ButterflyCanvas = dynamic(() => import('./ButterflyCanvas'), {
   ssr: false,
 })
+const ButterflyWander = dynamic(() => import('./ButterflyWander'), {
+  ssr: false,
+})
 
-// The butterfly follows the mouse, so it only makes sense on desktop with a real
-// pointer. On phones and tablets it used to download a 1MB+ 3D model and run
-// WebGL for nothing. Users who ask for reduced motion also skip it.
-const QUERY =
-  '(pointer: fine) and (min-width: 1024px) and (prefers-reduced-motion: no-preference)'
+// Desktop with a mouse: the butterfly follows the cursor.
+// Phones and tablets: it pops in now and then and wanders across the screen.
+// Anyone who asked the OS for reduced motion gets neither.
+const DESKTOP = '(pointer: fine) and (min-width: 1024px) and (prefers-reduced-motion: no-preference)'
+const TOUCH = '(hover: none) and (prefers-reduced-motion: no-preference)'
 
-function subscribe(onChange: () => void) {
-  const mq = window.matchMedia(QUERY)
+const subscribeTo = (query: string) => (onChange: () => void) => {
+  const mq = window.matchMedia(query)
   mq.addEventListener('change', onChange)
   return () => mq.removeEventListener('change', onChange)
 }
-
-const getSnapshot = () => window.matchMedia(QUERY).matches
+const subscribeDesktop = subscribeTo(DESKTOP)
+const subscribeTouch = subscribeTo(TOUCH)
+const getDesktop = () => window.matchMedia(DESKTOP).matches
+const getTouch = () => window.matchMedia(TOUCH).matches
 const getServerSnapshot = () => false
 
 // Error boundary: if the GLB fails to load or WebGL crashes,
@@ -48,11 +53,12 @@ class ButterflyErrorBoundary extends React.Component<
 }
 
 export default function ButterflyOverlay() {
-  const enabled = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
-  if (!enabled) return null
+  const desktop = useSyncExternalStore(subscribeDesktop, getDesktop, getServerSnapshot)
+  const touch = useSyncExternalStore(subscribeTouch, getTouch, getServerSnapshot)
+  if (!desktop && !touch) return null
   return (
     <ButterflyErrorBoundary>
-      <ButterflyCanvas />
+      {desktop ? <ButterflyCanvas /> : <ButterflyWander />}
     </ButterflyErrorBoundary>
   )
 }
