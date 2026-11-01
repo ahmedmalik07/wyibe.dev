@@ -1,5 +1,6 @@
 "use client";
 
+import { tintBg } from "../lib/tint";
 import { useEffect, useRef, useState } from "react";
 import { Code2, Bot, BarChart3, Cloud, ShieldCheck, Cpu, Smartphone, Database } from "lucide-react";
 
@@ -58,7 +59,7 @@ export default function ServicesSection() {
                 }`}
                 style={{
                   transitionDelay: `${i * 100}ms`,
-                  background: `linear-gradient(145deg, ${service.bg.replace('bg-', '').replace('/20', '')}33 0%, rgba(15,10,26,0.8) 100%)`,
+                  background: tintBg(service.bg),
                 }}
               >
                 <div className={`mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${service.gradient} shadow-lg`}>

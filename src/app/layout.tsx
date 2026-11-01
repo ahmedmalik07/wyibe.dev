@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { SITE_URL, organizationJsonLd } from "./lib/site";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Ahmed Malik", url: "https://linkedin.com/in/ahhmedmalik" }],
   creator: "Wyibe",
-  metadataBase: new URL("https://wyibe.dev"),
+  metadataBase: new URL(SITE_URL),
   icons: {
     icon: [
       { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     title: "Wyibe — Full-Stack Engineering & Agentic AI for B2B",
     description:
       "Production-grade web platforms and autonomous AI systems for businesses across the US, UK, Canada, and beyond.",
-    url: "https://wyibe.dev",
+    url: "/",
     siteName: "Wyibe",
     locale: "en_US",
     type: "website",
@@ -53,7 +54,6 @@ export const metadata: Metadata = {
     title: "Wyibe — Full-Stack Engineering & Agentic AI for B2B",
     description:
       "Production-grade web platforms and autonomous AI systems for businesses across the US, UK, Canada, and beyond.",
-    creator: "@wyibe",
   },
   robots: {
     index: true,
@@ -67,8 +67,14 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://wyibe.dev",
+    canonical: "/",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#06000e",
 };
 
 export default function RootLayout({
@@ -82,7 +88,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground overflow-x-hidden">
         {children}

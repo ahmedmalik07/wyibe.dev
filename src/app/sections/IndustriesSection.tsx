@@ -1,5 +1,6 @@
 "use client";
 
+import { tintBg } from "../lib/tint";
 import { useEffect, useRef, useState } from "react";
 import { Landmark, Stethoscope, ShoppingCart, Truck, Cpu, Shield, BarChart3, GraduationCap } from "lucide-react";
 
@@ -58,7 +59,7 @@ export default function IndustriesSection() {
                 }`}
                 style={{
                   transitionDelay: `${i * 75}ms`,
-                  background: `linear-gradient(145deg, ${industry.bg.replace('bg-', '').replace('/20', '')}33 0%, rgba(15,10,26,0.8) 100%)`,
+                  background: tintBg(industry.bg),
                 }}
               >
                 <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${industry.gradient} shadow-lg`}>

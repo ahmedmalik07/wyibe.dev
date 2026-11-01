@@ -1,5 +1,6 @@
 "use client";
 
+import { tintBg } from "../lib/tint";
 import { useEffect, useRef, useState } from "react";
 import { Terminal, GitBranch, Layers, MessageSquare, Gauge } from "lucide-react";
 
@@ -81,7 +82,7 @@ export default function TechnicalApproachSection() {
                 }`}
                 style={{
                   transitionDelay: `${index * 100}ms`,
-                  background: `linear-gradient(145deg, ${p.bg.replace('bg-', '').replace('/20', '')}33 0%, rgba(15,10,26,0.8) 100%)`,
+                  background: tintBg(p.bg),
                 }}
               >
                 <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${p.color} shadow-lg`}>

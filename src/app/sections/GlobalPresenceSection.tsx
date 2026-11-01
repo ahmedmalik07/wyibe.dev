@@ -1,5 +1,6 @@
 "use client";
 
+import { tintBg } from "../lib/tint";
 import { useEffect, useRef, useState } from "react";
 import { Globe, Clock, CheckCircle2, Phone } from "lucide-react";
 
@@ -51,7 +52,7 @@ export default function GlobalPresenceSection() {
               className={`group relative rounded-2xl border ${region.border} p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl ${
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
-              style={{ transitionDelay: `${i * 100}ms`, background: `linear-gradient(145deg, ${region.bg.replace('bg-', '').replace('/20', '')}33 0%, rgba(15,10,26,0.8) 100%)` }}
+              style={{ transitionDelay: `${i * 100}ms`, background: tintBg(region.bg) }}
             >
               <div className={`h-1 w-10 rounded-full bg-gradient-to-r ${region.gradient} mb-4 transition-all duration-300 group-hover:w-full`} />
               <div className="text-3xl mb-4">{region.flag}</div>

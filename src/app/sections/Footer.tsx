@@ -16,10 +16,6 @@ const footerLinks = {
     { label: "Approach", href: "#approach" },
     { label: "Contact", href: "#contact" },
   ],
-  legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-  ],
 };
 
 export default function Footer() {
@@ -111,9 +107,6 @@ export default function Footer() {
         <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-500">
             <span>&copy; {currentYear} Wyibe. All rights reserved.</span>
-            {footerLinks.legal.map((link) => (
-              <a key={link.label} href={link.href} className="hover:text-gray-300 transition-colors">{link.label}</a>
-            ))}
           </div>
           <a href="mailto:ahmed.malik@wyibe.com" className="inline-flex items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.04] px-4 py-2 text-xs font-medium text-gray-300 transition-all hover:border-purple-500/30 hover:bg-white/[0.08]">
             <Mail className="h-3.5 w-3.5" />

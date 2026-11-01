@@ -187,7 +187,7 @@ export default function PortfolioSection() {
                 <div className={`relative h-48 overflow-hidden bg-gradient-to-br ${project.gradient}`}>
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt=""
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -198,23 +198,39 @@ export default function PortfolioSection() {
                   <div className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-xl border border-white/20 bg-black/40 backdrop-blur-md shadow-lg">
                     <Icon className="h-5 w-5 text-white" />
                   </div>
-                  {/* external link */}
-                  <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all">
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm border border-white/20">
-                      <ExternalLink className="h-3.5 w-3.5 text-white" />
-                    </a>
-                  </div>
+                  {/* external link: only for projects that actually have a live URL or repo */}
+                  {project.link !== "#" && (
+                    <div className="absolute top-3 right-3 transition-all md:opacity-0 md:group-hover:opacity-100 md:focus-within:opacity-100">
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Open ${project.title}`}
+                        className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm border border-white/20"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5 text-white" />
+                      </a>
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex flex-1 flex-col p-6">
                   <div className="mb-3">
-                    <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">{project.title}</h3>
+                    <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">
+                      {project.link !== "#" ? (
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:underline underline-offset-4">
+                          {project.title}
+                        </a>
+                      ) : (
+                        project.title
+                      )}
+                    </h3>
                     <p className="text-xs text-gray-500">{project.client}</p>
                   </div>
                   <p className="flex-1 text-sm leading-relaxed text-gray-400 mb-4">{project.outcome}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
-                      <span key={tag} className={`inline-flex items-center rounded-full ${project.accent}/20 border border-${project.accent.replace('bg-', '')}/30 px-3 py-1 text-[11px] font-medium text-gray-300`}>
+                      <span key={tag} className="inline-flex items-center rounded-full bg-white/[0.06] border border-white/10 px-3 py-1 text-[11px] font-medium text-gray-300">
                         {tag}
                       </span>
                     ))}

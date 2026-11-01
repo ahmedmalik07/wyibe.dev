@@ -10,7 +10,7 @@ const faqs = [
   { question: "What tech stacks do you work with?", answer: "Modern, proven stacks: Next.js, React, Node.js, Python, TypeScript, PostgreSQL, AWS/GCP/Azure, Kubernetes, Terraform, and AI frameworks like LangChain and OpenAI. We pick the right tool for your scale and team." },
   { question: "How do you handle AI / LLM integrations?", answer: "We architect AI-native systems from day one — not as bolt-ons. This includes reasoning chains, RAG pipelines, vector databases, multi-agent workflows, and robust evaluation frameworks to ensure reliability at scale." },
   { question: "What does ongoing support look like?", answer: "Post-launch, we offer retainer plans covering monitoring, incident response, feature iteration, and performance optimization. Most clients stay with us for years because we treat their product like our own." },
-  { question: "How do we get started?", answer: "Book a free 30-minute strategy call via the link above. We'll audit your current setup, identify quick wins, and outline a roadmap — no commitment required." },
+  { question: "How do we get started?", answer: "Book a free 30-minute strategy call using the button below. We'll audit your current setup, identify quick wins, and outline a roadmap — no commitment required." },
 ];
 
 export default function FAQSection() {
@@ -35,6 +35,20 @@ export default function FAQSection() {
       </div>
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.question,
+              acceptedAnswer: { "@type": "Answer", text: f.answer },
+            })),
+          }),
+        }}
+      />
       <div className="mx-auto max-w-3xl relative">
         <div className="mb-16 text-center">
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 mb-4">
@@ -57,7 +71,13 @@ export default function FAQSection() {
               } ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
               style={{ transitionDelay: `${i * 80}ms`, background: openIndex === i ? "linear-gradient(145deg, rgba(99,102,241,0.1) 0%, rgba(15,10,26,0.9) 100%)" : "linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(15,10,26,0.8) 100%)" }}
             >
-              <button onClick={() => setOpenIndex(openIndex === i ? null : i)} className="flex w-full items-center justify-between gap-4 p-5 sm:p-6 text-left group">
+              <button
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                aria-expanded={openIndex === i}
+                aria-controls={`faq-panel-${i}`}
+                id={`faq-button-${i}`}
+                className="flex w-full items-center justify-between gap-4 p-5 sm:p-6 text-left group"
+              >
                 <div className="flex items-center gap-3">
                   <div className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${openIndex === i ? "bg-indigo-500/20" : "bg-white/[0.06] group-hover:bg-white/[0.1]"}`}>
                     <HelpCircle className={`h-4 w-4 shrink-0 transition-colors ${openIndex === i ? "text-indigo-400" : "text-gray-500 group-hover:text-gray-300"}`} />
@@ -68,9 +88,16 @@ export default function FAQSection() {
                 </div>
                 <ChevronDown className={`h-4 w-4 text-gray-500 shrink-0 transition-all duration-300 ${openIndex === i ? "rotate-180 text-indigo-400" : "group-hover:text-gray-300"}`} />
               </button>
-              <div className={`overflow-hidden transition-all duration-300 ${openIndex === i ? "max-h-96" : "max-h-0"}`}>
-                <div className="px-5 pb-5 sm:px-6 sm:pb-6 pl-[4.5rem] sm:pl-[4.5rem]">
+              <div
+                id={`faq-panel-${i}`}
+                role="region"
+                aria-labelledby={`faq-button-${i}`}
+                className={`grid transition-all duration-300 ${openIndex === i ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+              >
+                <div className="overflow-hidden">
+                <div className="px-5 pb-5 sm:px-6 sm:pb-6 pl-5 sm:pl-[4.5rem]">
                   <p className="text-sm leading-relaxed text-gray-400">{faq.answer}</p>
+                </div>
                 </div>
               </div>
             </div>

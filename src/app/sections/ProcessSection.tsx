@@ -1,5 +1,6 @@
 "use client";
 
+import { tintBg } from "../lib/tint";
 import { useEffect, useRef, useState } from "react";
 import { Search, PenTool, Code, Rocket, ChevronRight } from "lucide-react";
 
@@ -61,7 +62,7 @@ export default function ProcessSection() {
                       {step.number}
                     </div>
                   </div>
-                  <div className={`relative rounded-2xl border ${step.border} p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl ${isActive ? "border-white/20" : ""}`} style={{ background: `linear-gradient(145deg, ${step.bg.replace('bg-', '').replace('/20', '')}33 0%, rgba(15,10,26,0.8) 100%)` }}>
+                  <div className={`relative rounded-2xl border ${step.border} p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl ${isActive ? "border-white/20" : ""}`} style={{ background: tintBg(step.bg) }}>
                     <div className="flex items-center justify-end mb-4">
                       <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${step.bg} border ${step.border}`}>
                         <Icon className={`h-5 w-5 ${step.text}`} />
@@ -83,7 +84,7 @@ export default function ProcessSection() {
           {steps.map((step, i) => {
             const Icon = step.icon;
             return (
-              <div key={step.number} className={`group relative rounded-2xl border ${step.border} p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: `${i * 150}ms`, background: `linear-gradient(145deg, ${step.bg.replace('bg-', '').replace('/20', '')}33 0%, rgba(15,10,26,0.8) 100%)` }}>
+              <div key={step.number} className={`group relative rounded-2xl border ${step.border} p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: `${i * 150}ms`, background: tintBg(step.bg) }}>
                 <div className={`absolute -top-3 left-6 px-3 py-0.5 rounded-full bg-gradient-to-r ${step.color} text-white text-xs font-bold shadow-lg`}>{step.number}</div>
                 <div className="mt-3 mb-5 flex items-center justify-end">
                   <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${step.bg} border ${step.border}`}>

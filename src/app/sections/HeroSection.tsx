@@ -4,31 +4,42 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { ArrowRight, Globe, Zap, Shield } from "lucide-react";
 
 const HeroSection = () => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
+  const orbRef = useRef<HTMLDivElement>(null);
+  const planetRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
 
+  // Entrance animation: flip on the first frame after mount.
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setIsVisible(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  // Mouse parallax. Writes transforms straight to the DOM instead of React state,
+  // so the hero no longer re-renders on every mouse move. Skipped on touch
+  // devices and for users who prefer reduced motion.
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (rafRef.current) return;
     rafRef.current = requestAnimationFrame(() => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect();
-        setMousePos({
-          x: (e.clientX - rect.left - rect.width / 2) / 80,
-          y: (e.clientY - rect.top - rect.height / 2) / 80,
-        });
-      }
       rafRef.current = 0;
+      const hero = heroRef.current;
+      if (!hero) return;
+      const rect = hero.getBoundingClientRect();
+      if (rect.bottom < 0) return; // hero scrolled away, nothing to animate
+      const x = (e.clientX - rect.left - rect.width / 2) / 80;
+      const y = (e.clientY - rect.top - rect.height / 2) / 80;
+      if (orbRef.current)
+        orbRef.current.style.transform = `translateX(-50%) translate(${x * 2}px, ${y * 2}px)`;
+      if (planetRef.current)
+        planetRef.current.style.transform = `translate(${x * -2}px, ${y * -2}px)`;
     });
   }, []);
 
   useEffect(() => {
+    const fine = window.matchMedia("(pointer: fine)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!fine || reduced) return;
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
@@ -49,8 +60,9 @@ const HeroSection = () => {
         {/* ── THE ORB: conic gradient sphere ── */}
         <div
           className="absolute top-[-35%] sm:top-[-30%] left-1/2 w-[700px] h-[700px] sm:w-[900px] sm:h-[900px] lg:w-[1100px] lg:h-[1100px]"
+          ref={orbRef}
           style={{
-            transform: `translateX(-50%) translate(${mousePos.x * 2}px, ${mousePos.y * 2}px)`,
+            transform: "translateX(-50%)",
             willChange: "transform",
           }}
         >
@@ -168,10 +180,8 @@ const HeroSection = () => {
 
           <div className="hero-planet-arc-motion">
             <div
-              style={{
-                transform: `translate(${mousePos.x * -2}px, ${mousePos.y * -2}px)`,
-                transition: "transform 0.3s ease-out",
-              }}
+              ref={planetRef}
+              style={{ transition: "transform 0.3s ease-out" }}
             >
               <div className="hero-planet w-[110px] h-[110px] sm:w-[160px] sm:h-[160px] lg:w-[220px] lg:h-[220px]">
                 <div className="hero-planet-atmosphere" />
@@ -195,6 +205,7 @@ const HeroSection = () => {
           className="hero-lightning-bolt absolute top-[5%] left-[15%] w-[120px] h-[260px] sm:w-[160px] sm:h-[340px]"
           viewBox="0 0 160 340"
           fill="none"
+          aria-hidden="true"
         >
           <path
             d="M80 0 L65 60 L95 65 L55 140 L85 145 L40 220 L75 225 L20 340"
@@ -227,6 +238,7 @@ const HeroSection = () => {
           className="hero-lightning-bolt absolute top-[8%] right-[18%] w-[90px] h-[200px] sm:w-[120px] sm:h-[260px]"
           viewBox="0 0 120 260"
           fill="none"
+          aria-hidden="true"
         >
           <path
             d="M40 0 L55 50 L30 55 L70 120 L45 125 L85 200 L55 210 L100 260"
@@ -259,6 +271,7 @@ const HeroSection = () => {
           className="hero-lightning-bolt absolute top-[12%] left-[40%] w-[70px] h-[180px] sm:w-[100px] sm:h-[240px]"
           viewBox="0 0 100 240"
           fill="none"
+          aria-hidden="true"
           style={{ animationDelay: "4.5s" }}
         >
           <path
@@ -343,6 +356,7 @@ const HeroSection = () => {
               className="absolute -bottom-2 sm:-bottom-3 left-0 w-full"
               viewBox="0 0 300 12"
               fill="none"
+              aria-hidden="true"
               preserveAspectRatio="none"
             >
               <path
